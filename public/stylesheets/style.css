@@ -1,0 +1,14 @@
+.img-thumbnail{
+   padding:0;
+}
+.img-thumbnail img{
+    width:100%;
+}
+#delete-button{
+    display: inline;
+}
+/* Google Maps */
+#map {
+    height: 400px;
+    width: 100%;
+}
