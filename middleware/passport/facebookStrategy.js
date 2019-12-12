@@ -1,5 +1,9 @@
+const FacebookStrategy = require("passport-facebook"),
+      User             = require("../../models/user");
+
 //PASSPORT-FACEBOOK CONFIGURATION
-passport.use(new FacebookStrategy({
+module.exports=passport=>{
+   passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID ,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
     callbackURL: "http://localhost:3000/auth/facebook/callback",
@@ -36,4 +40,5 @@ passport.use(new FacebookStrategy({
           });
        });
     }
- ));
+   ));
+}
