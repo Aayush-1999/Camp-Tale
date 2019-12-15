@@ -1,63 +1,44 @@
-var Campground=require("../models/campground.js");
-var Comments=require("../models/comments.js");
-var middlewareObj={};
+const express       = require("express");
+      path          = require("path"),
+      flash         = require("connect-flash"),
+      compression   = require("compression"),  
+      passportSetup = require("./passport/setup"),
+      User          = require("../models/user");
 
-middlewareObj.checkCampgroundOwnership=(req,res,next)=>{
-    if(req.isAuthenticated()){
-       Campground.findById(req.params.id,(err,foundCampground)=>{
-          if(err || !foundCampground){
-             req.flash("error","Campground not found");
-             res.redirect("back");
-          }
-          else{
-             if(foundCampground.author.id.equals(req.user._id) || req.user.isAdmin){
-                next();
-             }
-             else
-             {
-               req.flash("You don't have permission to do that");
-               res.redirect("back");
-             }
-          }
-       });
+module.exports = app => {
+
+    app.use(compression({ filter: shouldCompress }))
+ 
+    function shouldCompress (req, res) {
+        if (req.headers['x-no-compression']) {
+            // don't compress responses with this request header
+            return false
+        }   
+        // fallback to standard filter function
+        return compression.filter(req, res)
     }
-    else
-    {
-      req.flash("error","You don't have permission to do that");
-      res.redirect("/campground");
-    }
-}
 
-middlewareObj.checkCommentOwnership=(req,res,next)=>{
-   if(req.isAuthenticated()){
-       Comments.findById(req.params.comment_id,(err,foundComment)=>{
-          if(err || !foundComment){
-             req.flash("error","Comment not found");
-             res.redirect("back");
-          }
-          else{
-             if(foundComment.author.id.equals(req.user._id) || req.user.isAdmin){
-                next();
-             }
-             else
-             {
-               req.flash("error","You don't have permission to do that");
-               res.redirect("back");
-             }
-          }
-       });
-   }
-   else
-       res.redirect("back");
- }
+    passportSetup(app);
+    
+    app.use(flash());
 
- middlewareObj.isLoggedIn=function (req,res,next){
-    if(req.isAuthenticated())
-    {
-       return next();
-    }
-    req.flash("error","You need to be logged in to do that");
-    res.redirect("/login");
- }
+    app.use(async function(req,res,next){
+        res.locals.currentUser = req.user;
+        res.locals.error  =  req.flash("error");
+        res.locals.success  =  req.flash("success");
+        
+        if(req.user) {
+            try {
+              let user = await User.findById(req.user._id).populate('notifications', null, { isRead: false }).exec();
+              //saving user's notifications to local variable notification
+              res.locals.notifications = user.notifications.reverse();
+            } catch(err) {
+              console.log(err.message);
+              res.redirect("/");
+            }
+        }
+        next();
+     });
 
- module.exports=middlewareObj;
+    app.use(express.static(path.join(__dirname,"../public")));
+};
