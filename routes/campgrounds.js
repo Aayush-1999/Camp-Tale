@@ -14,7 +14,7 @@ const options = {
   apiKey: process.env.GEOCODER_API_KEY,
   formatter: null
 };
-const geocoder = NodeGeocoder(options);
+// const geocoder = NodeGeocoder(options);
 
 //SHOW CAMPGROUND
 router.get("/",(req,res)=>{
