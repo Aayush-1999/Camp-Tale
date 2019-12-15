@@ -1,0 +1,42 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-3">
+            <div class="img-thumbnail">
+                <img src="<%=user.avatar%>" class="img-fluid" alt="profile image" >
+                <a href="/follow/<%= user._id %>"><button class="btn btn-primary btn-block mt-2">Follow</button></a>
+            </div>
+            <div class="p-3">
+                <% if(user.firstname && user.lastname){ %>
+                    <p>Name : <%= user.firstname+" "+user.lastname  %></p>
+                <%}
+                   else{ %>
+                    <p>Name : <%= user.firstname  %></p>
+                <% }%>
+                
+                <% if(user.username===user.email){ %>
+                    <p>Email : <%= user.email %></p>
+                <% } else {%>    
+                    <p>Username : <%= user.username %></p>
+                    <p>Email : <%= user.email %></p>
+                <% } %>    
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-7">
+            <% campgrounds.forEach(function(campground){ %>
+                <div class="img-thumbnail">
+                    <img src="<%=campground.image%>" class="img-fluid">
+                    <div class="p-3">
+                        <a href="/campground/<%= campground._id%>"><h4><%=campground.name%></h4></a>             
+                        <p><%=campground.description%></p>
+                    </div>
+                </div>
+            <%})%>
+        </div>
+
+    </div>
+</div>
+
+<% include ../partials/footer %>
