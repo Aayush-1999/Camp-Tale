@@ -39,18 +39,20 @@ router.post("/register",(req,res)=>{
         username:req.body.username,
         avatar:req.body.avatar
     });
+    console.log(newUser);
     if(req.body.adminCode==="We have hulk")
     {
         newUser.isAdmin=true;   
     }
-    User.register(newUser,req.body.password,function(err,user){
+    User.register(newUser,req.body.password,(err,user)=>{
         if(err){
          req.flash("error",err.message);
          return res.render("register");
-       }
-       passport.authenticate("local")(req,res,function(){
-       res.redirect("/campground");
-       });
+        }
+        req.logIn(user,function(err){  
+            res.redirect("/campground");
+        });
+       
     });
 });
  

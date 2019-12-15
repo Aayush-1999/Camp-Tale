@@ -13,7 +13,8 @@ const campgroundRoute = require("./routes/campgrounds"),
       commentRoute    = require("./routes/comments"),
       indexRoute      = require("./routes/index"),
       userRoute       = require("./routes/user"),
-      notificationRoute=require("./routes/notification");
+      resetPasswordRoute = require("./routes/resetpass");
+      // notificationRoute=require("./routes/notification");
 
 mongoose.connect(process.env.DATABASEURL,{useNewUrlParser:true});
 mongoose.set('useFindAndModify', false);
@@ -28,8 +29,9 @@ middleware(app);
 app.use("/campground",campgroundRoute);
 app.use("/campground/:id/comments",commentRoute);
 app.use("/",indexRoute);
+app.use("/",resetPasswordRoute);
 app.use("/user",userRoute);
-app.use("/notification",notificationRoute);
+// app.use("/notification",notificationRoute);
 
 app.listen(process.env.PORT || 3000)
 {

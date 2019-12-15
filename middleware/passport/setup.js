@@ -3,7 +3,9 @@ const passport              = require("passport"),
       facebook              = require("./facebookStrategy"),
       User                  = require("../../models/user"),
       expressSession        = require("express-session"),
-      LocalStrategy         = require("passport-local");
+      LocalStrategy         = require("passport-local"),
+      PassportLocalMongoose = require("passport-local-mongoose"),
+      mongoose              = require("mongoose");
 
 module.exports = app =>{
   app.use(expressSession({

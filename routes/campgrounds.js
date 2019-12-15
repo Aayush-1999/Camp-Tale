@@ -17,19 +17,19 @@ const options = {
 // const geocoder = NodeGeocoder(options);
 
 //SHOW CAMPGROUND
-router.get("/",(req,res)=>{
+router.get("/",async(req,res)=>{
    let noMatch=null;
    try{
       if(req.query.search){
          const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-         let campground=Campground.find({name:regex});
+         let campground= await Campground.find({name:regex});
          if(campground.length<1){
             noMatch="No Campgrounds found. Please try again.";
          }
          res.render("index",{campground,noMatch});
       }   
       else{
-         let campground=Campground.find({});
+         let campground=await Campground.find({});
             res.render("index",{campground,noMatch});
       }
    }
