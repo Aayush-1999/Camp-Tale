@@ -8,7 +8,7 @@ const express               = require("express"),
 
 require("dotenv").config();
 
-    //ROUTES
+//ROUTES
 const campgroundRoute = require("./routes/campgrounds"),
       commentRoute    = require("./routes/comments"),
       indexRoute      = require("./routes/index"),
