@@ -1,8 +1,8 @@
-const express=require("express");
-const router=express.Router({mergeParams:true});
-const Campground=require("../models/campground");
-const Comments=require("../models/comments");
-const middleware=require("../middleware");
+const express     = require("express");
+      router      = express.Router({mergeParams:true});
+      Campground  = require("../models/campground");
+      Comments    = require("../models/comments");
+      middleware  = require("../middleware/verify");
 
 //SHOW FORM FOR ADDING NEW COMMENT
 router.get("/new",middleware.isLoggedIn,(req,res)=>{
@@ -22,7 +22,7 @@ router.post("/",middleware.isLoggedIn,(req,res)=>{
     Campground.findById(req.params.id,(err,campground)=>{
        if(err)
        {
-          res.redirect("/campground");
+          res.redirect("back");
        }
        else{
           Comments.create(req.body.comment,(err,comment)=>{
@@ -66,7 +66,6 @@ router.post("/",middleware.isLoggedIn,(req,res)=>{
     Comments.findByIdAndUpdate(req.params.comment_id,req.body.comment,(err,newComment)=>{
        if(err)
        {
-          console.log(err);
           res.redirect("back");
        }
        else
