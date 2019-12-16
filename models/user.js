@@ -1,31 +1,51 @@
-var mongoose=require("mongoose"),
-    passportLocalMongoose = require("passport-local-mongoose");
+var mongoose                = require("mongoose"),
+    passportLocalMongoose   = require("passport-local-mongoose");
 
 var UserSchema=new mongoose.Schema({
     id:String,
-    firstname:String,
-    lastname:String,
-    email:{type:String, unique:true, required:true},
-    username:{type:String, unique:true, required:true},
+    firstName:{
+        type:String,
+        default:null
+    },
+    lastName:{
+        type:String,
+        default:null
+    },
+    displayName:{
+        type:String,
+        default:null
+    },
+    email:{
+        type:String, 
+        unique:true, 
+        required:true
+    },
     password:String,
-    avatar:String,
+    image:String,
+    imageID:{
+        type:String,
+        default:null
+    },
     resetPasswordToken:String,
     resetPasswordExpires:Date,
-    isAdmin: {type:Boolean,default:false},
-    token:String,
+    isAdmin: {
+        type:Boolean,
+        default:false
+    },
+    accessToken:String,
+    provider:{
+        type:String,
+        required:true,
+        default:"local"
+    },
     notifications: [
     	{
     	   type: mongoose.Schema.Types.ObjectId,
     	   ref: 'Notification'
     	}
-    ],
-    followers: [
-    	{
-    		type: mongoose.Schema.Types.ObjectId,
-    		ref: 'User'
-    	}
     ]
 });
 
-UserSchema.plugin(passportLocalMongoose);
+UserSchema.plugin(passportLocalMongoose,{usernameField:"email"});
+
 module.exports=mongoose.model("User",UserSchema);
