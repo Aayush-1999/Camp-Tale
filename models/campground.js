@@ -5,7 +5,10 @@ var campSchema=new mongoose.Schema({
     image:String,
     imageId:String,
     description:String,
-    createdAt: {type:Date , default:Date.now },
+    createdAt: {
+      type:Date , 
+      default:Date.now 
+    },
     location:String,
     lat:Number,
     lng:Number,
@@ -13,8 +16,7 @@ var campSchema=new mongoose.Schema({
       id:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"User"
-      },
-      username:String
+      }
     },
     comments:[
         {
