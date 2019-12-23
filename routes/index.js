@@ -3,8 +3,7 @@ const express      = require("express"),
       passport     = require("passport"),
       User         = require("../models/user"),
       googleAuth   = require("./auth/google"),
-      facebookAuth = require("./auth/facebook"),
-      middleware=require("../middleware");
+      facebookAuth = require("./auth/facebook");
 
 //ROOT ROUTE
 router.get("/",(req,res)=>{
@@ -33,17 +32,16 @@ router.get("/register",(req,res)=>{
 //REGISTER LOGIC ROUTE
 router.post("/register",(req,res)=>{
     let newUser=new User({
-        firstname:req.body.firstname,
-        lastname:req.body.lastname,
+        firstName:req.body.firstname,
+        lastName:req.body.lastname,
         email:req.body.email,
-        username:req.body.username,
-        avatar:req.body.avatar
+        image:"https://res.cloudinary.com/image-storage/image/upload/v1572009434/blank-avatar_opbhgx.png"
     });
-    console.log(newUser);
-    if(req.body.adminCode==="We have hulk")
+    if(newUser.email==="aayushaggarwal2007@gmail.com")
     {
         newUser.isAdmin=true;   
     }
+    console.log(newUser);
     User.register(newUser,req.body.password,(err,user)=>{
         if(err){
          req.flash("error",err.message);
@@ -52,7 +50,6 @@ router.post("/register",(req,res)=>{
         req.logIn(user,function(err){  
             res.redirect("/campground");
         });
-       
     });
 });
  
