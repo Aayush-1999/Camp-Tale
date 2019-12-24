@@ -8,6 +8,7 @@
                 <label for="password">New Password : </label>
                 <input type="password" name="password" class="form-control" placeholder="New Password">
             </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
             <div class="form-group">
                 <label for="confirm">Confirm Password : </label>
                 <input type="password" name="confirm" class="form-control" placeholder="Confirm Password">

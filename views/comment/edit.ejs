@@ -7,6 +7,7 @@
             <div class="form-group">
                 <input type="text" name="comment[text]" class="form-control" value="<%=comment.text%>">
             </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
             <button type="submit" class="btn btn-primary btn-block">Submit</button>
         </form>
     <a href="/campground/<%=campground_id%>">Go back</a>

@@ -12,6 +12,7 @@
                 <label for="image">Image</label>
                 <input type="file" id="image" name="image" accept="image/*" class="form-control" placeholder="image url">
             </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
             <div class="form-group">
                 <label for="location">Location</label>
                 <input class="form-control" type="text" name="location" id="location" value="<%= campground.location %>">
