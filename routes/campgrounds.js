@@ -78,7 +78,7 @@ router.post("/",middleware.isLoggedIn,upload.single('image'),async function(req,
 
 //SHOW FORM FOR ADDING NEW CAMPGROUND
 router.get("/new",middleware.isLoggedIn,(req, res)=> {
-    res.render("campground/newcampground") ;
+    res.render("campground/new") ;
 });
 
 //SHOW INFO ABOUT A CAMPGROUND
