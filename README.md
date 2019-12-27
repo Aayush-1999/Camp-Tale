@@ -38,7 +38,6 @@ Many security precautions have been taken:
 - ***bcrypt***: For secure password saving in the database.
 - ***csurf***: For protection against CSRF attack on Forms and fetch requests.
 - ***helmet***: For protection against common Security Vulnerabilities inExpress framework.
-- ***jsonwebtoken(JWT)***: For Secure Email Verification Links.
 - ***Content Security Policy***: For Secure Content Delivery from the server.
 - ***limiter***: For Limiting the access to data from a particular client (150 requests per hour).
 
@@ -52,17 +51,6 @@ Many security precautions have been taken:
 <br/>
 `multer` has been used for uploading images and `cloudinary` for storing images.
 
-<!-- ### Express Security
-
-For security `Helmet` is used with its defaults and additionally `Content Security Policy`.
-
-Additionally other mechanisms are also used:-
-
-- **csurf** - CSRF protection is applied to the entire project. If CSRF is to be enabled only on some routes then go to ./middlewares/security/globalSecurity.js and disable it and import ./middlewares/security/csurfSetup.js to the file where it is required. for more details refer csurf.
-
-- **limiter** - to block a user from accessing a route more than a given no. of time in a set duration(eg 150 requests per hour). For more details refer limiter. How to use:-
-require the limiterSetup file: ./middlewares/security/limiterSetup.js
-this will return an express middleware which can be used on any route, router or on app. -->
 
 ### NPM Commands
 - **npm install** - installs all the dependencies
