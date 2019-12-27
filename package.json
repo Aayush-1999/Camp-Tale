@@ -19,6 +19,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-session": "^1.16.1",
+    "helmet": "^3.21.2",
     "mapbox-geocoding": "^0.1.5",
     "method-override": "^3.0.0",
     "mongoose": "^5.8.3",
