@@ -2,10 +2,10 @@
 
 ![code quality](https://img.shields.io/badge/code%20quality-A-brightgreen)
 ![code size](https://img.shields.io/badge/code%20size-110%20kB-orange)
-![licence](https://img.shields.io/github/license/Aayush-1999/Camptale)
+![licence](https://img.shields.io/github/license/Aayush-1999/Camp-Tale)
 ![npm](https://img.shields.io/badge/npm-v6.13.0-blue)
-![Website](https://img.shields.io/website?up_color=light%20green&up_message=up&url=https%3A%2F%2Fgithub.com%2FAayush-1999%2FCamptale)
-![dependencies](https://img.shields.io/david/Aayush-1999/Camptale?label=dependencies)
+![Website](https://img.shields.io/website?up_color=light%20green&up_message=up&url=https%3A%2F%2Fgithub.com%2FAayush-1999%2FCamp-Tale)
+![dependencies](https://img.shields.io/david/Aayush-1999/Camp-Tale?label=dependencies)
 
 This is a **PWA** enabled **Web App** which provides complete Authentication and Registeration of all users with Google, Facebook and Local Email. On Camptale a user can:
 * Create a Campground
