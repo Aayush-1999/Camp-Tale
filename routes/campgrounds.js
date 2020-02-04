@@ -1,7 +1,7 @@
 const express             = require("express"),
-      router              = express.Router();
+      router              = express.Router(),
       Campground          = require("../models/campground"),
-      Notification        = require("../models/notification");
+      Notification        = require("../models/notification"),
       User                = require("../models/user"),
       methodOverride      = require("method-override"),
       middleware          = require("../middleware/verify"),
@@ -50,7 +50,7 @@ router.post("/",middleware.isLoggedIn,upload.single('image'),async function(req,
       req.body.campground.author = {
          id: req.user._id,
          username: req.user.username
-      }
+      };
       // let data= await geocoder.geocode(req.body.location);
       // req.body.campground.lat = data[0].latitude;
       // req.body.campground.lng = data[0].longitude;
@@ -145,7 +145,7 @@ router.put("/:id",middleware.checkCampgroundOwnership, upload.single('image'),(r
             campground.save();
             req.flash("success","Campground Updated successfully")
             res.redirect("/campground/" + req.params.id);
-         }
+         };
       });
    // });
 });
@@ -168,7 +168,7 @@ router.delete("/:id",middleware.checkCampgroundOwnership,(req,res)=>{
 
 function escapeRegex(text) {
    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-};
+}
 
 module.exports=router;
  

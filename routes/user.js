@@ -1,6 +1,6 @@
-const express     = require("express");
-      router      = express.Router();
-      User        = require("../models/user");
+const express     = require("express"),
+      router      = express.Router(),
+      User        = require("../models/user"),
       Campground  = require("../models/campground");
 
 // user profile

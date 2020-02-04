@@ -1,4 +1,4 @@
-const express       = require("express");
+const express       = require("express"),
       path          = require("path"),
       flash         = require("connect-flash"),
       compression   = require("compression"),  
@@ -8,7 +8,7 @@ const express       = require("express");
 
 module.exports = app => {
 
-    app.use(compression({ filter: shouldCompress }))
+    app.use(compression({ filter: shouldCompress }));
     
     function shouldCompress (req, res) {
         if (req.headers['x-no-compression']) {
@@ -16,7 +16,7 @@ module.exports = app => {
             return false
         }   
         // fallback to standard filter function
-        return compression.filter(req, res)
+        return compression.filter(req, res);
     }
 
     passportSetup(app);
@@ -36,7 +36,6 @@ module.exports = app => {
               //saving user's notifications to local variable notification
               res.locals.notifications = user.notifications.reverse();
             } catch(err) {
-              console.log(err.message);
               res.redirect("/");
             }
         }

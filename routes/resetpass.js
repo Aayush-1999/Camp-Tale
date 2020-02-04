@@ -1,6 +1,7 @@
 const express      = require("express"),
       router       = express.Router(),
       crypto       = require("crypto"),
+      bcrypt       = require("bcryptjs"),
       async        = require("async"),
       User         = require("../models/user"),
       email        = require("./auth/email");

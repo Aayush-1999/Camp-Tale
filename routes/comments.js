@@ -1,7 +1,7 @@
-const express     = require("express");
-      router      = express.Router({mergeParams:true});
-      Campground  = require("../models/campground");
-      Comments    = require("../models/comments");
+const express     = require("express"),
+      router      = express.Router({mergeParams:true}),
+      Campground  = require("../models/campground"),
+      Comments    = require("../models/comments"),
       middleware  = require("../middleware/verify");
 
 //SHOW FORM FOR ADDING NEW COMMENT
@@ -27,7 +27,7 @@ router.post("/",middleware.isLoggedIn,(req,res)=>{
        else{
           Comments.create(req.body.comment,(err,comment)=>{
              if(err)
-               console.log(err);
+               return("back");
              else
                comment.author.id=req.user._id;
                comment.author.username=req.user.username;

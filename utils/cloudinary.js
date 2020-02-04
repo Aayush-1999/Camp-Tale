@@ -13,7 +13,7 @@ const imageFilter = function (req, file, cb) {
     cb(null, true);
 };
 
-const upload = multer({ storage: storage, fileFilter: imageFilter})
+const upload = multer({ storage: storage, fileFilter: imageFilter});
   
 const cloudinary = require("cloudinary").v2;
     cloudinary.config({ 
