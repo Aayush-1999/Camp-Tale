@@ -1,6 +1,6 @@
 # Camp-Tale
 
-![code quality](https://img.shields.io/badge/code%20quality-A-brightgreen)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/acfbed7627e5419db9382d21191af95a)](https://www.codacy.com/manual/aayushaggarwal2007/Camp-Tale?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Aayush-1999/Camp-Tale&amp;utm_campaign=Badge_Grade)
 ![code size](https://img.shields.io/badge/code%20size-110%20kB-orange)
 ![licence](https://img.shields.io/github/license/Aayush-1999/Camp-Tale)
 ![npm](https://img.shields.io/badge/npm-v6.13.0-blue)
