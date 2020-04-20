@@ -1,67 +1,12 @@
 <!Doctype HTML>
 <html>
     <head>
-        <title>YelpCamp</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>Camptale</title>
         <link rel="stylesheet" href="/stylesheets/style.css">
+        <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"  media="screen,projection"/>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
-            <a class="navbar-brand" href="/">YelpCamp</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto"></ul>
-
-                <ul class="navbar-nav">
-                    <% if(!currentUser){ %>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/register">Sign Up</a>
-                        </li>
-                    <% } else {%>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications <span class="badge"><%= notifications.length %></span></a>
-                                <ul class="dropdown-menu">
-                                <li>
-                                    <a href="/notification">View past notifications</a>
-                                </li>
-                                <% notifications.forEach(function(notification) { %>                          
-                                    <li>
-                                        <a href="/notification/<%= notification.id %>">
-                                            <%= notification.username %> created a new campground
-                                        </a>
-                                    </li>
-                                <% }); %>
-                                </ul>
-                            </li>
-                            <%if(currentUser.isAdmin){ %>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/user/<%=currentUser._id%>"><%=currentUser.firstname%> (Admin)</a>
-                                </li>
-                            <% } 
-                            else if (currentUser.firstname && currentUser.lastname){ %>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/user/<%=currentUser._id%>"><%= currentUser.firstname+" "+currentUser.lastname  %></a>
-                                </li>
-                            <% } 
-                            else{ %>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/user/<%=currentUser._id%>"><%= currentUser.firstname %></a>
-                                </li>
-                            <% }%>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/logout">Logout</a>
-                            </li>
-                    <%}%>
-                </ul>      
-            </div>
-        </nav>
-
+        <% include ./navbar.ejs %>
         <div class="container">
             <% if(error && error.length>0) { %>
                 <div class="alert alert-danger" role="alert">
@@ -75,4 +20,3 @@
                 </div>
             <% } %>
         </div>
-        
