@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 ">
+    <a class="navbar-brand" href="/">Camptale</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerCampTale" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerCampTale">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <% if(!currentUser){ %>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/register">Sign Up</a>
+            </li>
+        <% } else {%>
+                <%if(currentUser.isAdmin){ %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/<%=currentUser._id%>"><%= currentUser.displayName%> (Admin)</a>
+                    </li>
+                <% } 
+                else{ %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/<%=currentUser._id%>"><%= currentUser.displayName %></a>
+                    </li>
+                <% }%>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+        <%}%>
+        <li class="nav-item">
+            <a class="nav-link" href="/campground/new">Add campground</a>
+        </li>
+      </ul>
+      <form  action="/campground" method="GET" class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">Search</button>
+      </form>
+    </div>
+  </nav>
