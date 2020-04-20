@@ -14,16 +14,14 @@ const campgroundRoute = require("./routes/campgrounds"),
       indexRoute      = require("./routes/index"),
       userRoute       = require("./routes/user"),
       resetPasswordRoute = require("./routes/resetpass");
-      // notificationRoute=require("./routes/notification");
 
-mongoose.connect(process.env.DATABASEURL,{useNewUrlParser:true});
+mongoose.connect(process.env.DATABASEURL,{useUnifiedTopology: true, useNewUrlParser:true});
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
 app.use(bodyparser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(methodOverride("_method"));
-//seed();
 middleware(app);
 
 app.use("/campground",campgroundRoute);
@@ -31,7 +29,6 @@ app.use("/campground/:id/comments",commentRoute);
 app.use("/",indexRoute);
 app.use("/",resetPasswordRoute);
 app.use("/user",userRoute);
-// app.use("/notification",notificationRoute);
 
 app.listen(process.env.PORT || 3000)
 {
