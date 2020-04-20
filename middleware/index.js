@@ -34,7 +34,6 @@ module.exports = app => {
             try {
               let user = await User.findById(req.user._id).populate('notifications', null, { isRead: false }).exec();
               //saving user's notifications to local variable notification
-              res.locals.notifications = user.notifications.reverse();
             } catch(err) {
               res.redirect("/");
             }
@@ -42,5 +41,6 @@ module.exports = app => {
         next();
      });
 
+    app.use(express.static(path.join(__dirname,"../node_modules/bootstrap/dist")));
     app.use(express.static(path.join(__dirname,"../public")));
 };
