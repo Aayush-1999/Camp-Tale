@@ -37,13 +37,7 @@ var UserSchema=new mongoose.Schema({
         type:String,
         required:true,
         default:"local"
-    },
-    notifications: [
-    	{
-    	   type: mongoose.Schema.Types.ObjectId,
-    	   ref: 'Notification'
-    	}
-    ]
+    }
 });
 
 UserSchema.plugin(passportLocalMongoose,{usernameField:"email"});
