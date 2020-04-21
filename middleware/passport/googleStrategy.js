@@ -16,17 +16,17 @@ module.exports = passport => {
                if(err) {
                   return done(err);
                }
-               if(user){
+               else if(user && user.provider==="google"){
                   return done(null, user);
                } 
-               else{
+               else if(!user){
                   var newUser = new User({
                      id:profile.id,
                      token:accessToken,
-                     firstname:profile.displayName,
+                     displayName:profile.displayName,
                      email:profile.emails[0].value,
-                     username:profile.emails[0].value,
-                     avatar:profile.photos[0].value
+                     image:profile.photos[0].value,
+                     provider: "google"
                   });
                   newUser.save(function(err) {
                      if(err) {
@@ -37,8 +37,11 @@ module.exports = passport => {
                      }
                   });
                }
+               else{
+                  return done(null,false,{ message: `This email id is already registered with ${user.provider}`});
+               }
             });
          });
-   }
+      }
    ));
 }
