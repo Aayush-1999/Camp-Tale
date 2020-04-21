@@ -1,43 +1,27 @@
 <% include ./partials/header %>
 
-
-<div class="container">
-  <header class="jumbotron">
-    <div class="container">
-      <h1>Welcome to Yelpcamp!</h1>
-      <p>View our hand picked from all over India</p>
-      <a class="btn btn-primary btn-large"  href="/campground/new">Add new Campground</a>
-      <p>
-        <form action="/campground" method="GET" class="form-inline">
-          <div class="form-group">
-            <input type="text" name="search" class="form-control" placeholder="Campground Search..">
-            <input type="submit" value="Search" class="btn btn-secondary">
-          </div>
-        </form>
-      </p>
-    </div>
-  </header>
-
+<div class="container p-3">
   <div class="row text-center">
     <% if (noMatch) { %>
     <div class="col-md-12">
       <h4><%=noMatch%></h4>
     </div>
     <% } %>
-   
-    <% campground.forEach(function(camp){ %>
-      <div class="col-md-3 col-sm-6">
-        <div class="img-thumbnail">
-          <img src="<%= camp.image %>" class="img-fluid" alt="Responsive image">
-          <div class="caption mt-2 mb-2">
-            <%= camp.name %>
+    <div class="row">
+    <% campground.forEach((camp)=>{ %>
+      <div class="col-12 col-sm-6 col-lg-4">
+          <div class="img-thumbnail">
+            <img src="<%= camp.image %>" class="img-fluid" alt="Responsive image">
+            <div class="caption mt-2 mb-2">
+              <%= camp.name %>
+            </div>
+            <p>
+              <a href="/campground/<%=camp._id%>" class="btn btn-success">More Info</a>
+            </p>
           </div>
-          <p>
-            <a href="/campground/<%=camp._id%>" class="btn btn-primary">More Info</a>
-          </p>
-        </div>
       </div>
     <% })%>
+    </div>
   </div>
 </div>
 
