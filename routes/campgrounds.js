@@ -1,7 +1,6 @@
 const express             = require("express"),
       router              = express.Router(),
       Campground          = require("../models/campground"),
-      Notification        = require("../models/notification"),
       User                = require("../models/user"),
       methodOverride      = require("method-override"),
       middleware          = require("../middleware/verify"),
@@ -57,16 +56,6 @@ router.post("/",middleware.isLoggedIn,upload.single('image'),async function(req,
       // req.body.campground.location = data[0].formattedAddress;
      
       let campground=await Campground.create(req.body.campground);
-      // let user = await User.findById(req.user._id).populate('followers').exec();
-      // let newNotification = {
-      //   username: req.user.username,
-      //   campgroundId: campground.id
-      // }
-      // for(const follower of user.followers) {
-      //   let notification = await Notification.create(newNotification);
-      //   follower.notifications.push(notification);
-      //   follower.save();
-      // }
       //redirect back to campgrounds page
       res.redirect(`/campground/${campground.id}`);
    } 

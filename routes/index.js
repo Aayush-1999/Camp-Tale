@@ -9,20 +9,6 @@ const express      = require("express"),
 router.get("/",(req,res)=>{
     res.render("landing"); 
 });
- 
-// follow user
-// router.get('/follow/:id', middleware.isLoggedIn, async function(req, res) {
-//   try {
-//     let user = await User.findById(req.params.id);
-//     user.followers.push(req.user._id);
-//     user.save();
-//     req.flash('success', 'Successfully followed ' + user.username + '!');
-//     res.redirect('/user/' + req.params.id);
-//   } catch(err) {
-//     req.flash('error', err.message);
-//     res.redirect('back');
-//   }
-// });
 
 //SHOW REGISTER FORM
 router.get("/register",(req,res)=>{
@@ -34,10 +20,11 @@ router.post("/register",(req,res)=>{
     let newUser=new User({
         firstName:req.body.firstname,
         lastName:req.body.lastname,
+        displayName:req.body.firstname+" "+req.body.lastname,
         email:req.body.email,
         image:"https://res.cloudinary.com/image-storage/image/upload/v1572009434/blank-avatar_opbhgx.png"
     });
-    if(newUser.email==="aayushaggarwal2007@gmail.com")
+    if(req.body.adminCode===process.env.ADMIN_CODE)
     {
         newUser.isAdmin=true;   
     }
