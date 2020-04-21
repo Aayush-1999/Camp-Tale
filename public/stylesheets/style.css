@@ -1,3 +1,8 @@
+
+.form-card{
+    justify-content: center;
+    /* width:40%;  */
+}
 .img-thumbnail{
    padding:0;
 }
@@ -11,4 +16,9 @@
 #map {
     height: 400px;
     width: 100%;
+}
+@media(max-width:500px){
+    .form-card{
+        width: 90%;
+    }
 }
