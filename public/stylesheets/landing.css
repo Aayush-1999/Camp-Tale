@@ -35,22 +35,22 @@ body {
     animation: imageAnimation 50s linear infinite; 
   }
   .slideshow li:nth-child(1) { 
-    background-image: url(http://i.imgur.com/emvhOnb.jpg);
+    background-image: url("../images/first.jpg");
   }
   .slideshow li:nth-child(2) { 
-    background-image: url(http://i.imgur.com/TVGe0Ef.jpg);
+    background-image: url("../images/second.jpg");
     animation-delay: 10s; 
   }
   .slideshow li:nth-child(3) { 
-    background-image: url(https://images.unsplash.com/photo-1502218808493-e5fd26249efc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);
+    background-image: url("../images/third.jpg");
     animation-delay: 20s; 
   }
   .slideshow li:nth-child(4) { 
-    background-image: url(http://i.imgur.com/2LSMCmJ.jpg);
+    background-image: url("../images/fourth.jpg");
     animation-delay: 30s; 
   }
   .slideshow li:nth-child(5) { 
-    background-image: url(https://images.unsplash.com/photo-1487730116645-74489c95b41b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);    
+    background-image: url("../images/fifth.jpg");    
     animation-delay: 40s; 
   }
   @keyframes imageAnimation { 

@@ -1,4 +1,15 @@
-
+.caption{
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+#delete-button{
+    display: inline;
+}
+/* Google Maps */
+#map {
+    height: 400px;
+    width: 100%;
+}
 .form-card{
     justify-content: center;
     /* width:40%;  */
@@ -9,16 +20,14 @@
 .img-thumbnail img{
     width:100%;
 }
-#delete-button{
-    display: inline;
-}
-/* Google Maps */
-#map {
-    height: 400px;
-    width: 100%;
-}
+
 @media(max-width:500px){
     .form-card{
         width: 90%;
+    }
+}
+@media(min-width:960px){
+    .rounded.card-image{
+        height: 231px;
     }
 }
