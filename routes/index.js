@@ -1,6 +1,7 @@
 const express      = require("express"),
       router       = express.Router(),
       passport     = require("passport"),
+      bcrypt       = require("bcryptjs"),
       User         = require("../models/user"),
       googleAuth   = require("./auth/google"),
       facebookAuth = require("./auth/facebook");
@@ -16,28 +17,31 @@ router.get("/register",(req,res)=>{
 });
 
 //REGISTER LOGIC ROUTE
-router.post("/register",(req,res)=>{
-    let newUser=new User({
-        firstName:req.body.firstname,
-        lastName:req.body.lastname,
-        displayName:req.body.firstname+" "+req.body.lastname,
-        email:req.body.email,
-        image:"https://res.cloudinary.com/image-storage/image/upload/v1572009434/blank-avatar_opbhgx.png"
-    });
-    if(req.body.adminCode===process.env.ADMIN_CODE)
-    {
-        newUser.isAdmin=true;   
-    }
-    console.log(newUser);
-    User.register(newUser,req.body.password,(err,user)=>{
-        if(err){
-         req.flash("error",err.message);
-         return res.render("register");
-        }
+router.post("/register",async (req,res)=>{
+    try{
+        const salt = bcrypt.genSaltSync(10);
+        const hashcode = bcrypt.hashSync(req.body.password, salt);    
+        let user = await User.create({
+            firstName:req.body.firstname,
+            lastName:req.body.lastname,
+            displayName:req.body.firstname + " " + req.body.lastname,
+            email:req.body.email,
+            password:hashcode,
+            image:"https://res.cloudinary.com/image-storage/image/upload/v1572009434/blank-avatar_opbhgx.png"
+        }); 
+        if(req.body.adminCode===process.env.ADMIN_CODE)
+            {
+                newUser.isAdmin=true;   
+            }
         req.logIn(user,function(err){  
             res.redirect("/campground");
-        });
-    });
+        });                   
+    }
+    catch(err){
+        console.log(err);
+        req.flash("error","This Email is already registered");
+        res.redirect("/register");
+    }    
 });
  
 //SHOW LOGIN FORM
@@ -46,11 +50,12 @@ router.get("/login",(req,res)=>{
 });
  
 //LOGIN LOGIC ROUTE
-router.post("/login",passport.authenticate("local",
+router.post("/login", passport.authenticate("local",
     {
-       successRedirect:"/campground",
-       failureRedirect:"/login"
+        failureFlash:true,
+        failureRedirect:"/login"
     }),(req,res)=>{
+        res.redirect("/campground")
 });
  
 //LOGOUT ROUTE
