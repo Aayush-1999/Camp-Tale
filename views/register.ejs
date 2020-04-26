@@ -1,6 +1,6 @@
 <%include ./partials/header%>
 
-<div class="container mt-4">
+<div class="container p-4">
     <div class="row justify-content-center">
         <div class="col-0 col-md-2 col-lg-3"></div>
         <div class="col-12 col-md-8 col-lg-5">
@@ -8,22 +8,32 @@
                 <div class="card-header">Sign up</div>
                 <div class="card-body text-dark">
                     <form action="/register" method="post">
-                        <div class="form-group">
-                            <label for="firstname">First Name</label>
-                            <input type="text" id="firstname" name="firstname" class="form-control" placeholder="First Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="lastname">Last Name</label>
-                            <input type="text" to="lastname" name="lastname" class="form-control" placeholder="Last Name">
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="firstname">First Name</label>
+                                    <input type="text" id="firstname" name="firstname" class="form-control" placeholder="First Name">
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="lastname">Last Name</label>
+                                    <input type="text" to="lastname" name="lastname" class="form-control" placeholder="Last Name">
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" class="form-control" placeholder="email">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Email">
                         </div>
                         <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" to="password" class="form-control" name="password" placeholder="password">
+                            <input type="password" to="password" class="form-control" name="password" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="adminCode">Admin Code</label>
+                            <input type="text" id="email" name="adminCode" class="form-control" placeholder="Admin Code">
                         </div>
                         <button class="btn btn-success btn-block">Sign Up</button>
                     </form>

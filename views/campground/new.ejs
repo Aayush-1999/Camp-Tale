@@ -1,32 +1,36 @@
 <%include ../partials/header%>
 
-<div class="container mt-4">
-    <h1 style="text-align:center">Create a new Campground</h1>
-    <div style="width: 30%; margin: 25px auto">
-        <form action="/campground" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" name="campground[name]" class="form-control" required placeholder="name">
+<div class="container p-3">
+    <div class="row justify-content-center">
+        <div class="col-0 col-md-2 col-lg-3"></div>
+        <div class="col-12 col-md-8 col-lg-5">
+            <div class="card border-dark mb-3 mx-auto form-card">
+                <div class="card-header">New Campground</div>
+                <div class="card-body text-dark">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="campground[name]" class="form-control" required placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="file" id="image" name="image" accept="image/*" class="form-control-file" required placeholder="image url">
+                    </div>
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input class="form-control" type="text" name="location" id="location" placeholder="Yosemite National Park, CA">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control"  name="campground[description]" id="description" placeholder="Please tell us something about it..." rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="image">Image</label>
-                <input type="file" id="image" name="image" accept="image/*" class="form-control" required placeholder="image url">
-            </div>
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
-            <div class="form-group">
-                <label for="location">Location</label>
-                <input class="form-control" type="text" name="location" id="location" placeholder="Yosemite National Park, CA">
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <input type="text" name="campground[description]" class="form-control" required placeholder="description">
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Submit</button>
-        </form>
-    <a href="/campground">Go back</a>
+        </div>
+        <div class="col-0 col-md-2 col-lg-3"></div>
     </div>
-    
 </div>
-
+    
 <%include ../partials/footer%>
 
