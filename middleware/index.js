@@ -20,9 +20,7 @@ module.exports = app => {
     }
 
     passportSetup(app);
-    
     security(app);
-
     app.use(flash());
 
     app.use(async function(req,res,next){
@@ -30,14 +28,6 @@ module.exports = app => {
         res.locals.error  =  req.flash("error");
         res.locals.success  =  req.flash("success");
         res.locals.csrfToken = req.csrfToken();
-        if(req.user) {
-            try {
-              let user = await User.findById(req.user._id).populate('notifications', null, { isRead: false }).exec();
-              //saving user's notifications to local variable notification
-            } catch(err) {
-              res.redirect("/");
-            }
-        }
         next();
      });
 

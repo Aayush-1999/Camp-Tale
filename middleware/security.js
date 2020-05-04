@@ -7,6 +7,7 @@ module.exports=app=>{
     // Content Security policy
     // app.use(helmet.contentSecurityPolicy({
     //     directives: {
+    //     connect-src https://*.tiles.mapbox.com https://api.mapbox.com https://events.mapbox.com
     //     defaultSrc: ["'self'"],
     //     styleSrc: ["'self'", 'fonts.googleapis.com/', 'use.fontawesome.com/', "'unsafe-inline'"],
     //     fontSrc: ["'self'", 'fonts.gstatic.com/', 'use.fontawesome.com/'],
